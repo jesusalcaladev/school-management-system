@@ -1,0 +1,10 @@
+POST http://localhost:3000/register
+User-Agent: rest-client
+content-type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "123456789",
+  "name": "test",
+  "lastname": "test"
+}
