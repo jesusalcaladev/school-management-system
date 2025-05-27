@@ -1,0 +1,17 @@
+{
+  "name": "school-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1"
+  },
+  "packageManager": "pnpm@10.0.0",
+  "devDependencies": {
+    "turbo": "^2.5.3"
+  }
+}
