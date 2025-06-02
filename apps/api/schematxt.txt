@@ -1,0 +1,25 @@
+Nombres
+Apellidos
+Email
+CI
+CurrentSession
+CurrentCourse
+Address
+Gender
+Parents
+Notes
+Birthday
+Photo
+placeOfBirth
+
+Notes:
+   {
+   lenguageAndLiterature
+   languages
+   mathematics
+   educationPhysics
+   Biology
+   Physics
+   Chemistry
+   Geography
+   }

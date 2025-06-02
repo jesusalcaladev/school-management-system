@@ -1,0 +1,3 @@
+GET http://localhost:3000/students?session=A&course=1
+User-Agent: rest-client
+content-type: application/json

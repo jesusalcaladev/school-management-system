@@ -9,12 +9,6 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body
   try {
     const token = await login(email, password)
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 24 * 60 * 60 * 1000, // 1 día
-    })
     res.status(200).json({ token })
   } catch (error) {
     if (error instanceof AuthError) {
@@ -25,20 +19,10 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.get('/hello-world', (req, res) => {
-  res.status(200).json({ message: 'Hello World!' })
-})
-
 router.post('/register', async (req, res) => {
   const { email, password, name, lastname } = req.body
   try {
     const token = await register({ email, password, name, lastname })
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 24 * 60 * 60 * 1000, // 1 día
-    })
     res.status(200).json({ token })
   } catch (error) {
     if (error instanceof AuthError) {

@@ -1,6 +1,7 @@
 import { start } from './modules/infra/server/start.js'
-import { router } from './modules/auth/routes/index.js'
+import { router as routerAuth } from './modules/auth/routes/index.js'
+import { studentRouter } from './modules/student/routes/student.js'
 
 process.loadEnvFile()
 
-start([router])
+start([routerAuth, studentRouter])

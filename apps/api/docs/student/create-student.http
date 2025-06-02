@@ -1,0 +1,16 @@
+POST http://localhost:3000/student/create
+User-Agent: rest-client
+content-type: application/json
+
+{
+    "names": "John Doe",
+    "lastNames": "Test test",
+    "email": "test@gmail.com",
+    "ci": "123456789",
+    "currentSession": "A",
+    "currentCourse": "1",
+    "address": "123 Main St",
+    "gender": "M",
+    "photo": "https://i.imgur.com/w3g8d3h.jpg",
+    "birthday": "1990-01-01"
+}
