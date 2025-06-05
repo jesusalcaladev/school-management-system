@@ -25,6 +25,7 @@ export const getStudentsSearch = async (req, res) => {
     )
     res.json(students)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: 'Error fetching students' })
   }
 }

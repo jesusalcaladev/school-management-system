@@ -38,22 +38,9 @@ export async function findStudentSearch(
   search,
   page = 1,
   limit = 10,
-  sort,
+  sort = false,
   course,
   session
 ) {
-  return await Student.find({
-    names: { $regex: search, $options: 'i' },
-    email: { $regex: search, $options: 'i' },
-    phone: { $regex: search, $options: 'i' },
-    address: { $regex: search, $options: 'i' },
-    lastname: { $regex: search, $options: 'i' },
-    ci: { $regex: search, $options: 'i' },
-    ...(course && { currentCourse: course }),
-    ...(course && { currentSession: session }),
-  }).paginate({
-    page: page,
-    limit: limit,
-    sort: { createdAt: sort === 'desc' ? 'desc' : 'asc' },
-  })
+  return await Student.find()
 }
