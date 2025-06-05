@@ -11,20 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as StudentsImport } from './routes/students'
 import { Route as SessionsImport } from './routes/sessions'
 import { Route as LoginImport } from './routes/login'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as StudentIndexImport } from './routes/student/index'
 import { Route as StudentCreateImport } from './routes/student/create'
 
 // Create/Update Routes
-
-const StudentsRoute = StudentsImport.update({
-  id: '/students',
-  path: '/students',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const SessionsRoute = SessionsImport.update({
   id: '/sessions',
@@ -47,6 +41,12 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StudentIndexRoute = StudentIndexImport.update({
+  id: '/student/',
+  path: '/student/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -88,18 +88,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SessionsImport
       parentRoute: typeof rootRoute
     }
-    '/students': {
-      id: '/students'
-      path: '/students'
-      fullPath: '/students'
-      preLoaderRoute: typeof StudentsImport
-      parentRoute: typeof rootRoute
-    }
     '/student/create': {
       id: '/student/create'
       path: '/student/create'
       fullPath: '/student/create'
       preLoaderRoute: typeof StudentCreateImport
+      parentRoute: typeof rootRoute
+    }
+    '/student/': {
+      id: '/student/'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof StudentIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -112,8 +112,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/sessions': typeof SessionsRoute
-  '/students': typeof StudentsRoute
   '/student/create': typeof StudentCreateRoute
+  '/student': typeof StudentIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -121,8 +121,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/sessions': typeof SessionsRoute
-  '/students': typeof StudentsRoute
   '/student/create': typeof StudentCreateRoute
+  '/student': typeof StudentIndexRoute
 }
 
 export interface FileRoutesById {
@@ -131,8 +131,8 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/sessions': typeof SessionsRoute
-  '/students': typeof StudentsRoute
   '/student/create': typeof StudentCreateRoute
+  '/student/': typeof StudentIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -142,18 +142,18 @@ export interface FileRouteTypes {
     | '/about'
     | '/login'
     | '/sessions'
-    | '/students'
     | '/student/create'
+    | '/student'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/login' | '/sessions' | '/students' | '/student/create'
+  to: '/' | '/about' | '/login' | '/sessions' | '/student/create' | '/student'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/login'
     | '/sessions'
-    | '/students'
     | '/student/create'
+    | '/student/'
   fileRoutesById: FileRoutesById
 }
 
@@ -162,8 +162,8 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   LoginRoute: typeof LoginRoute
   SessionsRoute: typeof SessionsRoute
-  StudentsRoute: typeof StudentsRoute
   StudentCreateRoute: typeof StudentCreateRoute
+  StudentIndexRoute: typeof StudentIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -171,8 +171,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   LoginRoute: LoginRoute,
   SessionsRoute: SessionsRoute,
-  StudentsRoute: StudentsRoute,
   StudentCreateRoute: StudentCreateRoute,
+  StudentIndexRoute: StudentIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -189,8 +189,8 @@ export const routeTree = rootRoute
         "/about",
         "/login",
         "/sessions",
-        "/students",
-        "/student/create"
+        "/student/create",
+        "/student/"
       ]
     },
     "/": {
@@ -205,11 +205,11 @@ export const routeTree = rootRoute
     "/sessions": {
       "filePath": "sessions.tsx"
     },
-    "/students": {
-      "filePath": "students.tsx"
-    },
     "/student/create": {
       "filePath": "student/create.tsx"
+    },
+    "/student/": {
+      "filePath": "student/index.tsx"
     }
   }
 }

@@ -1,4 +1,4 @@
-import ImageUploader from '@/components/ImageUploader'
+import { ImageUploader } from '@/components/image-uploader'
 import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
 import { Input } from '@/components/ui/input'

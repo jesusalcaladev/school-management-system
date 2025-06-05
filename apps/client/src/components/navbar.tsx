@@ -23,7 +23,7 @@ const optionStudents: { title: string; href: string; description: string }[] = [
   },
   {
     title: 'Ver estudiantes',
-    href: '/',
+    href: '/student',
     description: 'Ver todos los estudiantes registrados',
   },
 ]
