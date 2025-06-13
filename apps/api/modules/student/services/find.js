@@ -9,7 +9,7 @@ import Student from '../models/student.js'
  */
 
 export async function findStudentById(id) {
-  return Student.findById(id).populate('parents').populate('notes')
+  return await Student.findById(id)
 }
 
 /**
@@ -34,13 +34,10 @@ export async function findStudentByCI(ci) {
  * @param {string} session - The currectSessoin of students
  * @returns {Promise<Array<Object>>} A promise that resolves to an array of matching student documents.
  */
-export async function findStudentSearch(
-  search,
-  page = 1,
-  limit = 10,
-  sort = false,
-  course,
-  session
-) {
-  return await Student.find()
+export async function findStudents(page = 1, limit = 10, sort = false) {
+  return await Student.find().paginate({
+    page: page,
+    limit: limit,
+    sort: { createdAt: sort === 'desc' ? 'desc' : 'asc' },
+  })
 }

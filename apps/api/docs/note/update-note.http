@@ -1,0 +1,21 @@
+POST http://localhost:3000/note/update
+User-Agent: rest-client
+content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzYyYWYwZjMxYzYwZDQ1MTZiZTAwYiIsImlhdCI6MTc0ODgzNTY0MCwiZXhwIjoxNzQ4ODM5MjQwfQ.aoXPDwPR3UIyns0flkmYTiW3cnfV5BA_mYKkp0DhKMA
+
+{
+    "id": "684b0a76a6ee67d4f4ed53ff",
+    "year": "year1",
+    "period": "period3",
+    "updateData": {
+        "lenguageAndLiterature": 10,
+        "languages": 10,
+        "mathematics": 10,
+        "educationPhysics": 10,
+        "biology": 10,
+        "physics": 10,
+        "chemistry": 10,
+        "geography": 10,
+        "stableGroup": 12
+    }
+}

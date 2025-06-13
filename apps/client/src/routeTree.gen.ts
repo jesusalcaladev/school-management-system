@@ -11,14 +11,26 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as VerifyEmailImport } from './routes/verify-email'
 import { Route as SessionsImport } from './routes/sessions'
+import { Route as ResetPasswordImport } from './routes/reset-password'
 import { Route as LoginImport } from './routes/login'
+import { Route as CodeVefifyImport } from './routes/code-vefify'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as StudentIndexImport } from './routes/student/index'
+import { Route as MatriculaIndexImport } from './routes/matricula/index'
 import { Route as StudentCreateImport } from './routes/student/create'
+import { Route as StudentIdImport } from './routes/student/$id'
+import { Route as MatriculaDetailsImport } from './routes/matricula/details'
 
 // Create/Update Routes
+
+const VerifyEmailRoute = VerifyEmailImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SessionsRoute = SessionsImport.update({
   id: '/sessions',
@@ -26,9 +38,21 @@ const SessionsRoute = SessionsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ResetPasswordRoute = ResetPasswordImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const LoginRoute = LoginImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CodeVefifyRoute = CodeVefifyImport.update({
+  id: '/code-vefify',
+  path: '/code-vefify',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -50,9 +74,27 @@ const StudentIndexRoute = StudentIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const MatriculaIndexRoute = MatriculaIndexImport.update({
+  id: '/matricula/',
+  path: '/matricula/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const StudentCreateRoute = StudentCreateImport.update({
   id: '/student/create',
   path: '/student/create',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StudentIdRoute = StudentIdImport.update({
+  id: '/student/$id',
+  path: '/student/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MatriculaDetailsRoute = MatriculaDetailsImport.update({
+  id: '/matricula/details',
+  path: '/matricula/details',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,11 +116,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/code-vefify': {
+      id: '/code-vefify'
+      path: '/code-vefify'
+      fullPath: '/code-vefify'
+      preLoaderRoute: typeof CodeVefifyImport
+      parentRoute: typeof rootRoute
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordImport
       parentRoute: typeof rootRoute
     }
     '/sessions': {
@@ -88,11 +144,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SessionsImport
       parentRoute: typeof rootRoute
     }
+    '/verify-email': {
+      id: '/verify-email'
+      path: '/verify-email'
+      fullPath: '/verify-email'
+      preLoaderRoute: typeof VerifyEmailImport
+      parentRoute: typeof rootRoute
+    }
+    '/matricula/details': {
+      id: '/matricula/details'
+      path: '/matricula/details'
+      fullPath: '/matricula/details'
+      preLoaderRoute: typeof MatriculaDetailsImport
+      parentRoute: typeof rootRoute
+    }
+    '/student/$id': {
+      id: '/student/$id'
+      path: '/student/$id'
+      fullPath: '/student/$id'
+      preLoaderRoute: typeof StudentIdImport
+      parentRoute: typeof rootRoute
+    }
     '/student/create': {
       id: '/student/create'
       path: '/student/create'
       fullPath: '/student/create'
       preLoaderRoute: typeof StudentCreateImport
+      parentRoute: typeof rootRoute
+    }
+    '/matricula/': {
+      id: '/matricula/'
+      path: '/matricula'
+      fullPath: '/matricula'
+      preLoaderRoute: typeof MatriculaIndexImport
       parentRoute: typeof rootRoute
     }
     '/student/': {
@@ -110,18 +194,30 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code-vefify': typeof CodeVefifyRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sessions': typeof SessionsRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/matricula/details': typeof MatriculaDetailsRoute
+  '/student/$id': typeof StudentIdRoute
   '/student/create': typeof StudentCreateRoute
+  '/matricula': typeof MatriculaIndexRoute
   '/student': typeof StudentIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code-vefify': typeof CodeVefifyRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sessions': typeof SessionsRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/matricula/details': typeof MatriculaDetailsRoute
+  '/student/$id': typeof StudentIdRoute
   '/student/create': typeof StudentCreateRoute
+  '/matricula': typeof MatriculaIndexRoute
   '/student': typeof StudentIndexRoute
 }
 
@@ -129,9 +225,15 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code-vefify': typeof CodeVefifyRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sessions': typeof SessionsRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/matricula/details': typeof MatriculaDetailsRoute
+  '/student/$id': typeof StudentIdRoute
   '/student/create': typeof StudentCreateRoute
+  '/matricula/': typeof MatriculaIndexRoute
   '/student/': typeof StudentIndexRoute
 }
 
@@ -140,19 +242,43 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/code-vefify'
     | '/login'
+    | '/reset-password'
     | '/sessions'
+    | '/verify-email'
+    | '/matricula/details'
+    | '/student/$id'
     | '/student/create'
+    | '/matricula'
     | '/student'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/login' | '/sessions' | '/student/create' | '/student'
+  to:
+    | '/'
+    | '/about'
+    | '/code-vefify'
+    | '/login'
+    | '/reset-password'
+    | '/sessions'
+    | '/verify-email'
+    | '/matricula/details'
+    | '/student/$id'
+    | '/student/create'
+    | '/matricula'
+    | '/student'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/code-vefify'
     | '/login'
+    | '/reset-password'
     | '/sessions'
+    | '/verify-email'
+    | '/matricula/details'
+    | '/student/$id'
     | '/student/create'
+    | '/matricula/'
     | '/student/'
   fileRoutesById: FileRoutesById
 }
@@ -160,18 +286,30 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CodeVefifyRoute: typeof CodeVefifyRoute
   LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SessionsRoute: typeof SessionsRoute
+  VerifyEmailRoute: typeof VerifyEmailRoute
+  MatriculaDetailsRoute: typeof MatriculaDetailsRoute
+  StudentIdRoute: typeof StudentIdRoute
   StudentCreateRoute: typeof StudentCreateRoute
+  MatriculaIndexRoute: typeof MatriculaIndexRoute
   StudentIndexRoute: typeof StudentIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CodeVefifyRoute: CodeVefifyRoute,
   LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SessionsRoute: SessionsRoute,
+  VerifyEmailRoute: VerifyEmailRoute,
+  MatriculaDetailsRoute: MatriculaDetailsRoute,
+  StudentIdRoute: StudentIdRoute,
   StudentCreateRoute: StudentCreateRoute,
+  MatriculaIndexRoute: MatriculaIndexRoute,
   StudentIndexRoute: StudentIndexRoute,
 }
 
@@ -187,9 +325,15 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/code-vefify",
         "/login",
+        "/reset-password",
         "/sessions",
+        "/verify-email",
+        "/matricula/details",
+        "/student/$id",
         "/student/create",
+        "/matricula/",
         "/student/"
       ]
     },
@@ -199,14 +343,32 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.tsx"
     },
+    "/code-vefify": {
+      "filePath": "code-vefify.tsx"
+    },
     "/login": {
       "filePath": "login.tsx"
+    },
+    "/reset-password": {
+      "filePath": "reset-password.tsx"
     },
     "/sessions": {
       "filePath": "sessions.tsx"
     },
+    "/verify-email": {
+      "filePath": "verify-email.tsx"
+    },
+    "/matricula/details": {
+      "filePath": "matricula/details.tsx"
+    },
+    "/student/$id": {
+      "filePath": "student/$id.tsx"
+    },
     "/student/create": {
       "filePath": "student/create.tsx"
+    },
+    "/matricula/": {
+      "filePath": "matricula/index.tsx"
     },
     "/student/": {
       "filePath": "student/index.tsx"

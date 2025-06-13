@@ -1,0 +1,3 @@
+GET http://localhost:3000/send-code?email=jesusalcalarojas@gmail.com
+User-Agent: rest-client
+content-type: application/json

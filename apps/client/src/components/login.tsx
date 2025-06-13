@@ -12,12 +12,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useLogin } from '@/hooks/use-login'
 import { School } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) {
-  const { handleChange, handleSubmit } = useLogin()
+  const { handleChange, handleSubmit, values } = useLogin()
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <div className='size-80 absolute -left-1 -top-1 blur-2xl rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-40' />
@@ -60,6 +61,7 @@ export function LoginForm({
                   required
                 />
               </div>
+              <Link to={'/verify-email'}>Olvide mi contraseña</Link>
               <Button type='submit' size={'lg'} className='w-full'>
                 Login
               </Button>

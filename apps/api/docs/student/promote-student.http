@@ -1,0 +1,4 @@
+POST http://localhost:3000/student/promote
+User-Agent: rest-client
+content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzYyYWYwZjMxYzYwZDQ1MTZiZTAwYiIsImlhdCI6MTc0ODgzNTY0MCwiZXhwIjoxNzQ4ODM5MjQwfQ.aoXPDwPR3UIyns0flkmYTiW3cnfV5BA_mYKkp0DhKMA

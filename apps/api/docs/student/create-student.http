@@ -1,16 +1,21 @@
 POST http://localhost:3000/student/create
 User-Agent: rest-client
 content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzYyYWYwZjMxYzYwZDQ1MTZiZTAwYiIsImlhdCI6MTc0ODgzNTY0MCwiZXhwIjoxNzQ4ODM5MjQwfQ.aoXPDwPR3UIyns0flkmYTiW3cnfV5BA_mYKkp0DhKMA
 
 {
-    "names": "John Doe",
-    "lastNames": "Test test",
-    "email": "test@gmail.com",
-    "ci": "123456789",
-    "currentSession": "A",
+    "names": "Tito calss",
+    "lastnames": "Test test",
+    "email": "1234569101@gmail.com",
+    "ci": "1234567829",
+    "currentSession": "b",
     "currentCourse": "1",
     "address": "123 Main St",
     "gender": "M",
-    "photo": "https://i.imgur.com/w3g8d3h.jpg",
-    "birthday": "1990-01-01"
+    "placeOfBirth": "New York",
+    "photo": "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyZmlsfGVufDB8fDB8fHww",
+    "birthday": "1990-01-01",
+    "namesParent": "John Doe",
+    "lastnamesParent": "Doe",
+    "ciParent": "123456789"
 }

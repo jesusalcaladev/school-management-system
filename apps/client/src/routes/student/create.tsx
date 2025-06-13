@@ -11,6 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { COURSES } from '@/constants/course'
+import { SESSIONS } from '@/constants/sessions'
 import { createStudent } from '@/services/student'
 import { useMutation } from '@tanstack/react-query'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
@@ -22,27 +24,9 @@ export const Route = createFileRoute('/student/create')({
   component: RouteComponent,
 })
 
-const optionsSession = [
-  { value: 'a', label: 'A' },
-  { value: 'b', label: 'B' },
-  { value: 'c', label: 'C' },
-  { value: 'd', label: 'D' },
-  { value: 'e', label: 'E' },
-  { value: 'f', label: 'F' },
-  { value: 'g', label: 'G' },
-]
-
 const optionsGender = [
   { value: 'M', label: 'Masculino' },
   { value: 'F', label: 'Femenino' },
-]
-
-const optionsCourse = [
-  { value: '1', label: '1er' },
-  { value: '2', label: '2do' },
-  { value: '3', label: '3er' },
-  { value: '4', label: '4to' },
-  { value: '5', label: '5to' },
 ]
 
 const initialValues = {
@@ -54,9 +38,12 @@ const initialValues = {
   currentCourse: '',
   address: '',
   gender: '',
-  birthday: '',
-  photo: '',
   placeOfBirth: '',
+  photo: '',
+  birthday: '',
+  namesParent: '',
+  lastnamesParent: '',
+  ciParent: '',
 }
 
 function RouteComponent() {
@@ -72,6 +59,7 @@ function RouteComponent() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     mutate(values)
+    setValues(initialValues)
   }
 
   const handleChange =
@@ -96,7 +84,6 @@ function RouteComponent() {
             <Label htmlFor='photo'>Foto</Label>
             <ImageUploader
               onImageUpload={(files) => {
-                // Convertir el archivo a una URL base64
                 const reader = new FileReader()
                 reader.readAsDataURL(files[0])
                 reader.onloadend = () => {
@@ -112,6 +99,7 @@ function RouteComponent() {
             <Label htmlFor='names'>Nombres</Label>
             <Input
               id='names'
+              value={values.names}
               onChange={handleChange('names')}
               placeholder='John Doe'
               required
@@ -120,6 +108,7 @@ function RouteComponent() {
           <div className='grid gap-2'>
             <Label htmlFor='lastname'>Apellido</Label>
             <Input
+              value={values.lastnames}
               id='lastname'
               onChange={handleChange('lastnames')}
               placeholder='Smith Oxford'
@@ -129,6 +118,7 @@ function RouteComponent() {
           <div className='grid gap-2'>
             <Label htmlFor='CI'>CI</Label>
             <Input
+              value={values.ci}
               id='CI'
               onChange={handleChange('ci')}
               placeholder='12345678'
@@ -137,15 +127,17 @@ function RouteComponent() {
           <div className='grid gap-2'>
             <Label htmlFor='email'>Email</Label>
             <Input
+              value={values.email}
               id='email'
               onChange={handleChange('email')}
-              placeholder='12345678'
+              placeholder='john.doe@gmail.com'
             />
           </div>
           <div className='grid gap-2'>
             <Label htmlFor='address'>Direción</Label>
             <Input
               id='address'
+              value={values.address}
               onChange={handleChange('address')}
               placeholder='Charaima, Sector 1'
               required
@@ -153,13 +145,16 @@ function RouteComponent() {
           </div>
           <div className='grid gap-2'>
             <Label htmlFor='session'>Sección</Label>
-            <Select onValueChange={handleChange('currentSession')}>
+            <Select
+              value={values.currentSession}
+              onValueChange={handleChange('currentSession')}
+            >
               <SelectTrigger className='w-[200px]'>
                 <SelectValue placeholder='Seleciona una Sección' />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {optionsSession.map((option) => (
+                  {SESSIONS.map((option) => (
                     <SelectItem value={option.value}>{option.label}</SelectItem>
                   ))}
                 </SelectGroup>
@@ -168,13 +163,16 @@ function RouteComponent() {
           </div>
           <div className='grid gap-2'>
             <Label htmlFor='course'>Curso</Label>
-            <Select onValueChange={handleChange('currentCourse')}>
+            <Select
+              value={values.currentCourse}
+              onValueChange={handleChange('currentCourse')}
+            >
               <SelectTrigger className='w-[200px]'>
                 <SelectValue placeholder='Seleciona un Curso' />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {optionsCourse.map((option) => (
+                  {COURSES.map((option) => (
                     <SelectItem value={option.value}>{option.label}</SelectItem>
                   ))}
                 </SelectGroup>
@@ -192,7 +190,10 @@ function RouteComponent() {
           </div>
           <div className='grid gap-2'>
             <Label htmlFor='session'>Genero</Label>
-            <Select onValueChange={handleChange('gender')}>
+            <Select
+              value={values.gender}
+              onValueChange={handleChange('gender')}
+            >
               <SelectTrigger className='w-[200px]'>
                 <SelectValue placeholder='Seleciona un Genero' />
               </SelectTrigger>
@@ -208,9 +209,40 @@ function RouteComponent() {
           <div className='grid gap-2'>
             <Label htmlFor='placeOfBirth'>Lugar de nacimiento</Label>
             <Input
+              value={values.placeOfBirth}
               id='placeOfBirth'
               onChange={handleChange('placeOfBirth')}
               placeholder='Calle Sierra, Punto Fijo'
+              required
+            />
+          </div>
+          <div className='grid gap-2'>
+            <Label htmlFor='namesParent'>Nombre del representante</Label>
+            <Input
+              value={values.namesParent}
+              id='namesParent'
+              onChange={handleChange('namesParent')}
+              placeholder='Carla'
+              required
+            />
+          </div>
+          <div className='grid gap-2'>
+            <Label htmlFor='lastnamesParent'>Apellido del representante</Label>
+            <Input
+              value={values.lastnamesParent}
+              id='lastnamesParent'
+              onChange={handleChange('lastnamesParent')}
+              placeholder='Santana'
+              required
+            />
+          </div>
+          <div className='grid gap-2'>
+            <Label htmlFor='ciParent'>CI del representante</Label>
+            <Input
+              id='ciParent'
+              value={values.ciParent}
+              onChange={handleChange('ciParent')}
+              placeholder='12345678'
               required
             />
           </div>

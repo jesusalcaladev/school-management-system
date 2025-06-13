@@ -3,7 +3,7 @@ User-Agent: rest-client
 content-type: application/json
 
 {
-  "email": "test@gmail.com",
+  "email": "jesusalcalarojas@gmail.com",
   "password": "123456789",
   "name": "test",
   "lastname": "test"

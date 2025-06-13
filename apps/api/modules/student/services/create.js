@@ -28,7 +28,9 @@ export async function validateCreateStudent(data) {
  * @throws {ValidationError} If the provided data is invalid.
  */
 export async function createStudent(data) {
-  await validateCreateStudent(data)
+  const { currentCourse, ...rest } = data
+  const courseParse = parseInt(currentCourse)
+  await validateCreateStudent({ ...rest, currentCourse: courseParse })
   const student = new Student(data)
   return await student.save()
 }

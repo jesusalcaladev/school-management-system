@@ -25,7 +25,7 @@ const StudentSchema = new Schema(
       required: true,
     },
     currentCourse: {
-      type: String,
+      type: Number,
       required: true,
     },
     address: {
@@ -37,13 +37,17 @@ const StudentSchema = new Schema(
       enum: ['M', 'F'],
       required: true,
     },
-    parents: {
-      type: Types.ObjectId,
-      ref: 'Parent',
+    namesParent: {
+      type: String,
+      required: true,
     },
-    notes: {
-      type: Types.ObjectId,
-      ref: 'Note',
+    lastnamesParent: {
+      type: String,
+      required: true,
+    },
+    ciParent: {
+      type: String,
+      required: true,
     },
     birthday: {
       type: Date,

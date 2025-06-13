@@ -30,14 +30,14 @@ export function DatePicker({
           )}
         >
           <CalendarIcon />
-          {valueDate ? (
-            format(valueDate, 'dd-MM-yyyy')
+          {valueDate || value ? (
+            format(valueDate ?? value, 'dd-MM-yyyy')
           ) : (
             <span>Selecciona una fecha</span>
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-auto p-0' align='start'>
+      <PopoverContent className='w-auto p-0 z-50' align='start'>
         <Calendar
           mode='single'
           selected={valueDate}

@@ -15,7 +15,13 @@ import { Button } from './ui/button'
 import { LogOut } from 'lucide-react'
 import { useAuthContext } from '@/context/auth-context'
 
-const optionStudents: { title: string; href: string; description: string }[] = [
+type Options = {
+  title: string
+  href: string
+  description: string
+}
+
+const optionStudents: Options[] = [
   {
     title: 'Crear nuevo estudiante',
     href: '/student/create',
@@ -27,26 +33,18 @@ const optionStudents: { title: string; href: string; description: string }[] = [
     description: 'Ver todos los estudiantes registrados',
   },
 ]
-const optionRepresentantes: {
-  title: string
-  href: string
-  description: string
-}[] = [
+
+const optionsMatricula: Options[] = [
   {
-    title: 'Crear nuevos representantes',
-    href: '/',
-    description: 'Crear nuevo representante para un estudiante',
-  },
-  {
-    title: 'Ver representantes',
-    href: '/',
-    description: 'Ver todos los representantes registrados',
+    title: 'Ver matricula',
+    href: '/matricula',
+    description: 'Ver todas las matriculas registradas',
   },
 ]
 
 export function Navigation() {
   return (
-    <NavigationMenu viewport={false} className='mx-auto'>
+    <NavigationMenu viewport={false} className='mx-auto z-50'>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Inicio</NavigationMenuTrigger>
@@ -67,12 +65,6 @@ export function Navigation() {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href='/introduction' title='Introducción'>
-                Como funciona el sistema
-              </ListItem>
-              <ListItem href='/docs/installation' title='Políticas'>
-                Políticas de uso del sistema
-              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -92,17 +84,19 @@ export function Navigation() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Representantes</NavigationMenuTrigger>
+        <NavigationMenuItem onClick={() => console.log('matricula')}>
+          <Link to='/matricula'>
+            <NavigationMenuTrigger>Matricula</NavigationMenuTrigger>
+          </Link>
           <NavigationMenuContent>
             <ul className='grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
-              {optionRepresentantes.map((option) => (
+              {optionsMatricula.map((component) => (
                 <ListItem
-                  key={option.title}
-                  title={option.title}
-                  href={option.href}
+                  key={component.title}
+                  title={component.title}
+                  href={component.href}
                 >
-                  {option.description}
+                  {component.description}
                 </ListItem>
               ))}
             </ul>
