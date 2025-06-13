@@ -84,13 +84,11 @@ export function Navigation() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem onClick={() => console.log('matricula')}>
-          <Link to='/matricula'>
-            <NavigationMenuTrigger>Matricula</NavigationMenuTrigger>
-          </Link>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Estudiantes</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className='grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
-              {optionsMatricula.map((component) => (
+              {optionStudents.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -99,6 +97,22 @@ export function Navigation() {
                   {component.description}
                 </ListItem>
               ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem onClick={() => console.log('matricula')}>
+          <Link to='/matricula'>
+            <NavigationMenuTrigger>Formatos</NavigationMenuTrigger>
+          </Link>
+          <NavigationMenuContent>
+            <ul className='grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
+              <ListItem
+                key={'formatos'}
+                title={'Descargar formatos'}
+                href={'/format/download'}
+              >
+                Descargar formatos
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

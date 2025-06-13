@@ -6,6 +6,14 @@ export const getNotes = async (idStudent: string) => {
   return response
 }
 
+export const createNote = async (data: { idStudent: string }) => {
+  const response = await handlerApi.post<Notes, { idStudent: string }>(
+    `/note/create`,
+    data
+  )
+  return response
+}
+
 export const updateSubjectGrades = async (body: {
   id: string
   year: string

@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/select'
 import { COURSES } from '@/constants/course'
 import { SESSIONS } from '@/constants/sessions'
+import { createNote } from '@/services/note'
 import { createStudent } from '@/services/student'
 import { useMutation } from '@tanstack/react-query'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
@@ -48,7 +49,7 @@ const initialValues = {
 
 function RouteComponent() {
   const [values, setValues] = useState(initialValues)
-  const { mutate } = useMutation({
+  const { mutate, data } = useMutation({
     mutationFn: createStudent,
     onSuccess: () => {
       toast.success('Estudiante creado exitosamente')
@@ -56,9 +57,19 @@ function RouteComponent() {
     },
   })
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { mutate: createNoteMutation } = useMutation({
+    mutationFn: createNote,
+    onSuccess: () => {
+      toast.success('Notas creadas exitosamente')
+    },
+  })
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     mutate(values)
+    createNoteMutation({
+      idStudent: data?._id,
+    })
     setValues(initialValues)
   }
 

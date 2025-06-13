@@ -23,6 +23,7 @@ import { Route as MatriculaIndexImport } from './routes/matricula/index'
 import { Route as StudentCreateImport } from './routes/student/create'
 import { Route as StudentIdImport } from './routes/student/$id'
 import { Route as MatriculaDetailsImport } from './routes/matricula/details'
+import { Route as FormatDownloadImport } from './routes/format/download'
 
 // Create/Update Routes
 
@@ -98,6 +99,12 @@ const MatriculaDetailsRoute = MatriculaDetailsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const FormatDownloadRoute = FormatDownloadImport.update({
+  id: '/format/download',
+  path: '/format/download',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -151,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VerifyEmailImport
       parentRoute: typeof rootRoute
     }
+    '/format/download': {
+      id: '/format/download'
+      path: '/format/download'
+      fullPath: '/format/download'
+      preLoaderRoute: typeof FormatDownloadImport
+      parentRoute: typeof rootRoute
+    }
     '/matricula/details': {
       id: '/matricula/details'
       path: '/matricula/details'
@@ -199,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/sessions': typeof SessionsRoute
   '/verify-email': typeof VerifyEmailRoute
+  '/format/download': typeof FormatDownloadRoute
   '/matricula/details': typeof MatriculaDetailsRoute
   '/student/$id': typeof StudentIdRoute
   '/student/create': typeof StudentCreateRoute
@@ -214,6 +229,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/sessions': typeof SessionsRoute
   '/verify-email': typeof VerifyEmailRoute
+  '/format/download': typeof FormatDownloadRoute
   '/matricula/details': typeof MatriculaDetailsRoute
   '/student/$id': typeof StudentIdRoute
   '/student/create': typeof StudentCreateRoute
@@ -230,6 +246,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/sessions': typeof SessionsRoute
   '/verify-email': typeof VerifyEmailRoute
+  '/format/download': typeof FormatDownloadRoute
   '/matricula/details': typeof MatriculaDetailsRoute
   '/student/$id': typeof StudentIdRoute
   '/student/create': typeof StudentCreateRoute
@@ -247,6 +264,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sessions'
     | '/verify-email'
+    | '/format/download'
     | '/matricula/details'
     | '/student/$id'
     | '/student/create'
@@ -261,6 +279,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sessions'
     | '/verify-email'
+    | '/format/download'
     | '/matricula/details'
     | '/student/$id'
     | '/student/create'
@@ -275,6 +294,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sessions'
     | '/verify-email'
+    | '/format/download'
     | '/matricula/details'
     | '/student/$id'
     | '/student/create'
@@ -291,6 +311,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SessionsRoute: typeof SessionsRoute
   VerifyEmailRoute: typeof VerifyEmailRoute
+  FormatDownloadRoute: typeof FormatDownloadRoute
   MatriculaDetailsRoute: typeof MatriculaDetailsRoute
   StudentIdRoute: typeof StudentIdRoute
   StudentCreateRoute: typeof StudentCreateRoute
@@ -306,6 +327,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SessionsRoute: SessionsRoute,
   VerifyEmailRoute: VerifyEmailRoute,
+  FormatDownloadRoute: FormatDownloadRoute,
   MatriculaDetailsRoute: MatriculaDetailsRoute,
   StudentIdRoute: StudentIdRoute,
   StudentCreateRoute: StudentCreateRoute,
@@ -330,6 +352,7 @@ export const routeTree = rootRoute
         "/reset-password",
         "/sessions",
         "/verify-email",
+        "/format/download",
         "/matricula/details",
         "/student/$id",
         "/student/create",
@@ -357,6 +380,9 @@ export const routeTree = rootRoute
     },
     "/verify-email": {
       "filePath": "verify-email.tsx"
+    },
+    "/format/download": {
+      "filePath": "format/download.tsx"
     },
     "/matricula/details": {
       "filePath": "matricula/details.tsx"
